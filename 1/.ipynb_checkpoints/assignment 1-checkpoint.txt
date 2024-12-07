@@ -1,0 +1,241 @@
+Q1.   
+MCQ:  
+What is the result of the following code?
+
+
+	import numpy as np
+	arr = np.arange(10)
+	arr = arr[arr % 2 == 0]
+
+
+a) [0, 2, 4, 6, 8] 
+b) [0, 2, 4, 6, 8, 10] 
+c) [1, 3, 5, 7, 9] 
+d) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+Q2.  
+MCQ:  
+What is the output of the following code?
+
+
+	import numpy as np
+	arr = np.random.randint(1, 100, size=(3, 4))
+	arr[1:, 1:] = 0
+
+
+a) A 3x4 matrix with zeros in the last two rows and columns starting from index 1  
+b) A 3x4 matrix with zeros in the last two rows only  
+c) A 3x4 matrix with zeros in the first column  
+d) A 3x4 matrix where all values are zero
+
+
+
+Q3. 
+MCQ:  
+Which of the following code snippets will correctly create a 4x4 identity matrix using NumPy?
+
+a) np.zeros((4, 4))
+b) np.ones((4, 4))  
+c) np.eye(4)  
+d) np.diag([1, 1, 1, 1])
+
+
+Q4.  
+Coding Problem:  
+You are given the following 2D array:
+
+
+	import numpy as np
+	arr = np.array([[3, 6, 9], 
+                	[1, 5, 8], 
+                	[2, 7, 10]])
+
+
+1. Flatten the array into a 1D array.
+2. Replace all even values in the array with 0.
+3. Reshape the array back to a 3x3 matrix.
+
+
+
+Q5. 
+Coding Problem:  
+You are given the following 1D array:
+
+
+arr = np.array([1, 3, 5, 7, 9, 11])
+
+
+Write a function to:
+1. Find the mean of the array.
+2. Replace values greater than the mean with the string 'High' and values less than the mean with the string 'Low'.
+3. Return the modified array.
+
+
+
+Q6.   
+MCQ:  
+What is the output of the following code?
+
+
+	import pandas as pd
+	df = pd.DataFrame({
+    		'A': [1, 2, 3],
+    		'B': [4, 5, 6]
+	})
+	df['C'] = df['A'] + df['B']
+
+
+a) A DataFrame with columns A, B, and C, where C is the sum of A and B  
+b) A KeyError because column 'C' does not exist  
+c) A DataFrame with columns A, B, and C, where C contains 0 values  
+d) An empty DataFrame
+
+
+
+Q7.  
+MCQ:  
+Which function is used to merge two DataFrames on a common column?
+
+a) pd.join()  
+b) pd.concat()  
+c) pd.merge()  
+d) pd.append()
+
+
+
+Q8.   
+Coding Problem:  
+You are given the following dataset of student scores:
+
+
+	import pandas as pd
+	data = {
+    		'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    		'Math': [85, 90, 88, 92, 78],
+    		'English': [79, 88, 91, 85, 80],
+    		'Science': [92, 85, 89, 94, 81]
+		}
+	df = pd.DataFrame(data)
+
+
+1. Calculate the average score across all subjects for each student.
+2. Create a new column Total that contains the total score across all subjects.
+3. Find the student with the highest average score and the one with the lowest average score.
+
+
+
+Q9.   
+Coding Problem:  
+You are given the following dataset of sales data:
+
+
+	import pandas as pd
+	sales_data = {
+    		'Product': ['A', 'B', 'C', 'D', 'E'],
+    		'Sales_Q1': [100, 150, 200, 130, 180],
+    		'Sales_Q2': [120, 160, 210, 150, 170],
+    		'Sales_Q3': [110, 180, 220, 140, 190],
+    		'Sales_Q4': [130, 170, 250, 120, 160]
+		}
+	df_sales = pd.DataFrame(sales_data)
+
+
+1. Calculate the total annual sales for each product.
+2. Add a column Growth that shows the percentage change from Q1 to Q4 for each product.
+3. Find the product with the highest annual sales and the highest growth percentage.
+
+
+
+Q10.   
+Coding Problem:  
+You are given the following dataset of employee information:
+
+
+	import pandas as pd
+	employee_data = {
+    		'Name': ['John', 'Jane', 'Mary', 'Paul', 'Anna'],
+    		'Age': [28, 35, 40, 45, 22],
+    		'Department': ['HR', 'Finance', 'IT', 'Finance', 'HR'],
+    		'Salary': [50000, 60000, 70000, 75000, 45000]
+		}
+	df_employee = pd.DataFrame(employee_data)
+
+
+1. Create a new column called Age Group. If the employee is under 30, the value should be Young, between 30 and 40 should be Middle, and above 40 should be Senior.
+2. Find the average salary per department.
+3. Identify the employee with the highest salary.
+
+
+
+Q11.   
+Coding Problem:  
+You are given the following dataset of product prices:
+
+
+	import pandas as pd
+	product_data = {
+    		'Product': ['Apple', 'Banana', 'Carrot', 'Date', 'Eggplant'],
+    		'Price': [2.5, 1.2, 3.0, 2.8, 1.5],
+    		'Category': ['Fruit', 'Fruit', 'Vegetable', 'Fruit', 'Vegetable']
+		}
+	df_product = pd.DataFrame(product_data)
+
+
+1. Group the products by their Category and calculate the average price per category.
+2. Filter the products that cost more than 2.5 and are classified as Fruit.
+3. Sort the products by price in descending order and reset the index.
+
+
+
+Q12. 
+MCQ:  
+What is the purpose of cross-validation?
+
+a) To evaluate model performance on unseen data  
+b) To select the best hyperparameters for the model  
+c) To assess the model’s ability to generalize  
+d) All of the above
+
+
+
+Q13. 
+MCQ:  
+Which of the following is true about overfitting in a machine learning model?
+
+a) Overfitting occurs when the model performs well on the training data but poorly on new, unseen data.  
+b) Overfitting occurs when the model is too simple to capture the underlying patterns.  
+c) Overfitting can always be avoided by using more features.  
+d) Overfitting occurs when the training data is not sufficient.
+
+
+Q14. (15 mins)  
+Coding Problem:  
+You are given the following dataset:
+
+
+	import pandas as pd
+	data = {
+    		'Age': [23, 45, 56, 67, 34, 23, 45, 67],
+    		'Salary': [50000, 60000, 70000, 80000, 55000, 45000, 65000, 75000]
+	}
+	df = pd.DataFrame(data)
+
+
+1. Split the data into features (X) and target (y) where X is the Age and y is the Salary.
+2. Train a simple linear regression model to predict Salary based on Age.
+3. Evaluate the model using Mean Squared Error (MSE).
+
+
+
+Q15.  
+MCQ:  
+In the context of regression, which evaluation metric would you use to evaluate the model’s performance on continuous data?
+
+a) Accuracy  
+b) Precision  
+c) R-squared  
+d) F1-score
+
+
+
