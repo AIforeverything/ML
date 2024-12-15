@@ -1,0 +1,86 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+# Load the car price dataset from Kaggle or local directory
+# Replace 'car_price_data.csv' with the path to your file
+df = pd.read_csv('car_price_data.csv')
+
+# Define your independent variables (X) and dependent variable (y)
+# Assuming the target variable is 'price' and other columns are predictors
+y = df['price']
+X = df.drop(columns=['price'])
+
+# Add a constant to X for statsmodels OLS
+X = sm.add_constant(X)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Fit the OLS model
+model = sm.OLS(y_train, X_train).fit()
+
+# Predict on the test set
+y_pred = model.predict(X_test)
+
+# Calculate residuals
+residuals = y_test - y_pred
+
+# Assumption 1: Linearity - Check with a scatter plot of observed vs predicted values
+plt.figure(figsize=(10, 6))
+plt.scatter(y_pred, y_test, alpha=0.6)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)
+plt.xlabel('Predicted Prices')
+plt.ylabel('Observed Prices')
+plt.title('Observed vs Predicted Prices (Linearity Check)')
+plt.show()
+
+# Assumption 2: Normality of Errors - Check with histogram and Q-Q plot of residuals
+plt.figure(figsize=(12, 6))
+
+# Histogram
+plt.subplot(1, 2, 1)
+sns.histplot(residuals, kde=True)
+plt.xlabel('Residuals')
+plt.title('Residuals Histogram (Normality Check)')
+
+# Q-Q plot
+plt.subplot(1, 2, 2)
+sm.qqplot(residuals, line='45', fit=True)
+plt.title('Q-Q Plot of Residuals (Normality Check)')
+plt.show()
+
+# Assumption 3: Homoscedasticity - Check with a scatter plot of residuals vs predicted values
+plt.figure(figsize=(10, 6))
+plt.scatter(y_pred, residuals, alpha=0.6)
+plt.axhline(0, color='r', linestyle='--', linewidth=2)
+plt.xlabel('Predicted Prices')
+plt.ylabel('Residuals')
+plt.title('Residuals vs Predicted Prices (Homoscedasticity Check)')
+plt.show()
+
+# Assumption 4: No Multicollinearity - Check Variance Inflation Factor (VIF)
+vif_data = pd.DataFrame()
+vif_data["feature"] = X_train.columns
+vif_data["VIF"] = [variance_inflation_factor(X_train.values, i) for i in range(X_train.shape[1])]
+
+print("Variance Inflation Factors (VIF):")
+print(vif_data)
+
+# Assumption 5: No Autocorrelation - Check using Durbin-Watson test
+from statsmodels.stats.stattools import durbin_watson
+dw_stat = durbin_watson(residuals)
+print(f'Durbin-Watson statistic: {dw_stat}')
+
+# Durbin-Watson statistic interpretation
+if dw_stat < 1.5:
+    print("Potential positive autocorrelation.")
+elif dw_stat > 2.5:
+    print("Potential negative autocorrelation.")
+else:
+    print("No significant autocorrelation.")
